@@ -83,5 +83,3 @@ del h2
 del h3
 
 print(House.Houses_history)
-
-del h1
