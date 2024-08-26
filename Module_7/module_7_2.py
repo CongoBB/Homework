@@ -8,7 +8,7 @@ def custom_write(file_name, strings):
         file_strings[i] = file.tell()
         file.write(f'{i}\n')
     file.close()
-    with open('test.txt', 'r') as file:
+    with open('test.txt', 'r', encoding='utf-8') as file:
         for l_no, line in enumerate(file, start=1):
             for i in strings:
                 if i in line:
