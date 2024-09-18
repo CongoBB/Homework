@@ -28,12 +28,6 @@ class Iterator:
             raise StopIteration()
         return self.current_pos
 
-try:
-    c = Iterator(1, 2, -1)
-except StepValueError:
-    print('')
-except EndpointValueError:
-    print('Введены некорректные значения')
 
 try:
     iter1 = Iterator(100, 200, 0)
