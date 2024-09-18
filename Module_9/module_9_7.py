@@ -13,9 +13,7 @@ def is_prime(func):
 
 @is_prime
 def sum_numbers(*args):
-    summ = 0
-    for i in args:
-        summ += i
+    summ = sum(args)
     print(summ)
     return summ
 
