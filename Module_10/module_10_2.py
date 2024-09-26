@@ -16,11 +16,22 @@ class Knight(Thread):
         while hostiles > 0:
             hostiles = hostiles - self.power
             days += 1
-            print(f'{self.name} сражается {days} день/дня/дней, осталось {hostiles} воинов)')
+            print(f'{self.name} сражается {days} {self.number_checker(days)}, осталось {hostiles} воинов)')
             sleep(1)
             if hostiles < 0:
                 hostiles = 0
-        print(f'{self.name} одержал победу спустя {days} день/дня/дней')
+        print(f'{self.name} одержал победу спустя {days} {self.number_checker(days)}')
+
+    @staticmethod
+    def number_checker(days):
+        if int(str(days)[-1]) == 1:
+            days_str = 'день'
+        elif int(str(days)[-1]) in [2, 3, 4]:
+            days_str = 'дня'
+        else:
+            days_str = 'дней'
+        result = days_str
+        return result
 
 
 first_knight = Knight('Sir Lancelot', 10)
@@ -33,4 +44,3 @@ first_knight.join()
 second_knight.join()
 
 print('Все битвы закончились!')
-
