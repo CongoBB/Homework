@@ -9,15 +9,15 @@ def write_words(word_count, file_name):
             file.write(f'Слово №{i}\n')
             # print(f'В файл {file.name} записываем слово №{i}')
             sleep(0.1)
-    return f'Запись в файл {file_name} завершена'
+    return print(f'Запись в файл {file_name} завершена')
 
 
 no_thread_time_start = datetime.now()
 
-print(write_words(10, 'example1.txt'))
-print(write_words(30, 'example2.txt'))
-print(write_words(200, 'example3.txt'))
-print(write_words(100, 'example4.txt'))
+write_words(10, 'example1.txt')
+write_words(30, 'example2.txt')
+write_words(200, 'example3.txt')
+write_words(100, 'example4.txt')
 
 no_thread_time_end = datetime.now()
 print(f'Время затраченное на выполнение программы без использования многопоточности: '
