@@ -12,15 +12,15 @@ class Knight(Thread):
     def run(self):
         hostiles = 100
         days = 0
-        print(f'{self.name}, на нас напали!')
+        print(f'{self.name}, на нас напали!\n')
         while hostiles > 0:
             hostiles = hostiles - self.power
             days += 1
-            print(f'{self.name} сражается {days} {self.number_checker(days)}, осталось {hostiles} воинов)')
+            print(f'{self.name} сражается {days} {self.number_checker(days)}, осталось {hostiles} воинов.\n')
             sleep(1)
             if hostiles < 0:
                 hostiles = 0
-        print(f'{self.name} одержал победу спустя {days} {self.number_checker(days)}')
+        print(f'{self.name} одержал победу спустя {days} {self.number_checker(days)}!\n')
 
     @staticmethod
     def number_checker(days):
