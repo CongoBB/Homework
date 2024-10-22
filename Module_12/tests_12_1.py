@@ -1,8 +1,5 @@
 import unittest
 import runner
-import runner_and_tournament
-import rt_with_exceptions
-
 
 class RunnerTest(unittest.TestCase):
 
