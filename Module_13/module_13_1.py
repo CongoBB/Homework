@@ -19,5 +19,4 @@ async def start_tournament():
         await i
     
 
-
 asyncio.run(start_tournament())
