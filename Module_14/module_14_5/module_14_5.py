@@ -11,7 +11,6 @@ from aiogram.dispatcher import FSMContext
 import asyncio
 
 # api = input('Вставьте код:')
-api ='8096683805:AAEgKJ_3hBp0fG4wio0iUSwLjf1cNWXYWX4'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
