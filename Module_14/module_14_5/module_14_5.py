@@ -10,7 +10,7 @@ from crud_functions import *
 from aiogram.dispatcher import FSMContext
 import asyncio
 
-# api = input('Вставьте код:')
+api = input('Вставьте код:')
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
