@@ -5,13 +5,13 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-users = []
 
 class User(BaseModel):
     id: int = None
     username: str
     age: int
 
+users: List[User] =[]
 
 @app.get("/users")
 async def get_all_users()-> List[User]:
@@ -19,7 +19,7 @@ async def get_all_users()-> List[User]:
 
 
 @app.get("/user/{user_id}")
-async def get_user(user_id: int = Path(ge=1, le=100, description="Enter User ID", example="4"))-> User:
+async def get_user(user_id: Annotated[int, Path(ge=1, le=100, description="Enter User ID", example="4")])-> User:
     try:
         return users[user_id]
     except IndexError:
@@ -37,8 +37,11 @@ async def create_user(user: User, username: Annotated
         example="Pudge"
     )
 ],
-                     age: int = Path(ge=18, le=120, description="Enter age", example='99'))-> str:
-    current_index = len(users) + 1
+                     age: Annotated[int, Path(ge=18, le=120, description="Enter age", example='99')])-> str:
+    try:
+        current_index = max(i.id for i in users) + 1
+    except:
+        current_index = 1
     user.id = current_index
     user.username = username
     user.age = age
@@ -69,10 +72,14 @@ async def update_user(user_id: int, username: Annotated
 
 @app.delete("/user/{user_id}")
 async def delete_user(user_id: int):
-    try:
-        deleted_user = users.pop(user_id-1)
+    user_found = False
+    for user in users:
+        if user.id == user_id:
+            deleted_user= users.pop(users.index(user))
+            user_found = True
+    if user_found:
         return f"User {deleted_user} has been removed"
-    except IndexError:
+    else:
         raise HTTPException(status_code=404, detail="User was not found")
 
 
