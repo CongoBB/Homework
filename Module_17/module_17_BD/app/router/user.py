@@ -37,18 +37,16 @@ async def create_user(db: Annotated[Session, Depends(get_db)], create_user: Crea
 
 
 @router.put('/update')
-async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, update_user: CreateUser):
+async def update_user(db: Annotated[Session, Depends(get_db)], user_id: int, update_user: UpdateUser):
     user = db.scalar(select(User).where(User.id == user_id))
-    if User is None:
+    if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail='No such user found')
 
     db.execute(update(User).where(User.id == user_id).values(
-        username=update_user.username,
         firstname=update_user.firstname,
         lastname=update_user.lastname,
         age=update_user.age,
-        slug=slugify(update_user.username)
     ))
 
     db.commit()
